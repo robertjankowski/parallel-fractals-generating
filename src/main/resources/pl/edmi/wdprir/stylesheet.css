@@ -1,0 +1,23 @@
+.root {
+    display: block;
+    -fx-background-color: darkgray;
+}
+
+.fontStyle {
+    -fx-font-size: 14px;
+    -fx-font-family: sans-serif;
+}
+
+#welcome_label {
+    -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-font-weight: bold;
+    -fx-border-width: 4;
+    -fx-border-insets: -5;
+    -fx-padding: 10px;
+}
+
+#startGeneration {
+    -fx-font-weight: bold;
+    -fx-padding: 30px;
+}

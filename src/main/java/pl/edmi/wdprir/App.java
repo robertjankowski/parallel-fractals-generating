@@ -1,4 +1,4 @@
-package org.openjfx;
+package pl.edmi.wdprir;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,17 +8,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * JavaFX App
- */
+
 public class App extends Application {
 
     private static Scene scene;
+    private static final String APP_TITLE = "Parallel Fractal Generator";
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"));
+        scene = new Scene(loadFXML("main_frame"));
+        stage.setTitle(APP_TITLE);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
