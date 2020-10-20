@@ -6,7 +6,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,14 +24,10 @@ public class MainController implements Initializable {
     @FXML
     public ToggleParallelSwitch parallelSwitch;
 
-    private GraphicsContext gc;
+    @FXML
+    public BorderPane borderPane;
 
-    public void initGraphics() {
-        gc = fractalCanvas.getGraphicsContext2D();
-        gc.fillRect(0, 0, fractalCanvas.getWidth(), fractalCanvas.getHeight());
-        gc.setFill(Color.BLACK);
-        gc.fillRect(0, 0, fractalCanvas.getWidth(), fractalCanvas.getHeight());
-    }
+    private GraphicsContext gc;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -43,7 +41,7 @@ public class MainController implements Initializable {
         System.out.println("Selected: " + fractalTypeName);
 
         boolean isParallel = parallelSwitch.switchOnProperty().get();
-        // TODO: implement fractal generating
+        // TODO: implement fractal generation...
         if (isParallel) {
             System.out.println("Computing fractal parallel");
             drawCircle();
@@ -51,6 +49,19 @@ public class MainController implements Initializable {
             System.out.println("Computing fractal sequentially");
             drawRect();
         }
+    }
+
+    @FXML
+    public void saveFractal(ActionEvent actionEvent) {
+        Stage stage = (Stage) borderPane.getScene().getWindow();
+        FileSaver.captureFractal(stage, fractalCanvas);
+    }
+
+    private void initGraphics() {
+        gc = fractalCanvas.getGraphicsContext2D();
+        gc.fillRect(0, 0, fractalCanvas.getWidth(), fractalCanvas.getHeight());
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, fractalCanvas.getWidth(), fractalCanvas.getHeight());
     }
 
     private void drawCircle() {
