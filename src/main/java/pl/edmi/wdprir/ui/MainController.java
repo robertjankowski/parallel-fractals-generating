@@ -54,7 +54,7 @@ public class MainController implements Initializable {
     @FXML
     public void saveFractal(ActionEvent actionEvent) {
         Stage stage = (Stage) borderPane.getScene().getWindow();
-        FileSaver.captureFractal(stage, fractalCanvas);
+        CanvasSaver.captureFractal(stage, fractalCanvas);
     }
 
     private void initGraphics() {

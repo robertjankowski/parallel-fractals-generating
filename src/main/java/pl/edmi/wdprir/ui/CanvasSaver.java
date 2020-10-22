@@ -1,10 +1,8 @@
 package pl.edmi.wdprir.ui;
 
 import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.WritableImage;
-import javafx.scene.transform.Transform;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -23,18 +21,18 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class FileSaver {
+public class CanvasSaver {
 
     private final static List<ExtensionFilter> extensionFilters = List.of(
             new ExtensionFilter("PNG files (*.png)", "*.png"),
             new ExtensionFilter("TIFF files (*.tiff)", "*.tiff"));
-    private final static String DEFAULT_EXTENSION = "png";
+    private final static String DEFAULT_EXTENSION = "PNG";
     private static final double DPI = 600;
     private static final double INCH_2_CM = 2.54;
 
     public static void captureFractal(Stage stage, Canvas canvas) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save fractal");
+        fileChooser.setTitle("Save fractal image");
         fileChooser.getExtensionFilters().addAll(extensionFilters);
         File file = fileChooser.showSaveDialog(stage);
         if (file != null) {
@@ -59,7 +57,7 @@ public class FileSaver {
                     break;
                 }
             } catch (IOException ex) {
-                Logger.getLogger(FileSaver.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CanvasSaver.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -68,7 +66,7 @@ public class FileSaver {
         String fileName = file.getName();
         String[] fileWithExtension = fileName.split("\\.");
         if (fileWithExtension.length == 2) {
-            return fileWithExtension[1];
+            return fileWithExtension[1].toUpperCase();
         } else {
             return defaultValue;
         }

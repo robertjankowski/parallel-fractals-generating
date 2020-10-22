@@ -4,7 +4,7 @@
 }
 
 .fontStyle {
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
     -fx-font-family: sans-serif;
 }
 
@@ -15,9 +15,25 @@
     -fx-border-width: 4;
     -fx-border-insets: -5;
     -fx-padding: 10px;
+    -fx-font-size: 18px;
 }
 
-#startGeneration {
+#run_button {
     -fx-font-weight: bold;
-    -fx-padding: 30px;
+    -fx-padding: 10px;
+    -fx-font-size: 20px;
+}
+
+#fractal_chooser {
+    -fx-border-color: black;
+    -fx-border-insets: 5;
+    -fx-border-width: 3;
+    -fx-border-style: dashed;
+    -fx-padding: 10px;
+}
+
+#fractal_chooser_label {
+    -fx-padding: 10px;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
 }
