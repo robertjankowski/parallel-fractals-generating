@@ -5,23 +5,23 @@ import javafx.scene.paint.Color;
 
 public class MandelbrotSet extends FractalShape {
 
-    private static final double MANDELBROT_RE_MIN = -2;
-    private static final double MANDELBROT_RE_MAX = 1;
-    private static final double MANDELBROT_IM_MIN = -1.2;
-    private static final double MANDELBROT_IM_MAX = 1.2;
+    public final static double MANDELBROT_RE_MIN = -2;
+    public final static double MANDELBROT_RE_MAX = 1;
+    public final static double MANDELBROT_IM_MIN = -1.2;
+    public final static double MANDELBROT_IM_MAX = 1.2;
 
     public MandelbrotSet(Canvas canvas) {
         super(canvas);
     }
 
     @Override
-    public void drawFractal() {
-        drawMandelbrot(MANDELBROT_RE_MIN, MANDELBROT_RE_MAX, MANDELBROT_IM_MIN, MANDELBROT_IM_MAX);
+    public void drawFractal(double reMin, double reMax, double imMin, double imMax) {
+        drawMandelbrot(reMin, reMax, imMin, imMax);
     }
 
     private void drawMandelbrot(double reMin, double reMax, double imMin, double imMax) {
         double precision = Math.max((reMax - reMin) / canvasWidth, (imMax - imMin) / canvasHeight);
-        int convergenceSteps = 50;
+        int convergenceSteps = 2000;
         for (double c = reMin, xR = 0; xR < canvasWidth; c += precision, xR++) {
             for (double ci = imMin, yR = 0; yR < canvasHeight; ci += precision, yR++) {
                 double convergenceValue = checkConvergence(ci, c, convergenceSteps);

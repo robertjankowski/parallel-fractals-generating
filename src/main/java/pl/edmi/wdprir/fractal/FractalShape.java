@@ -17,6 +17,6 @@ public abstract class FractalShape {
         canvasHeight = canvas.getHeight();
     }
 
-    public abstract void drawFractal();
+    public abstract void drawFractal(double reMin, double reMax, double imMin, double imMax);
 
 }
