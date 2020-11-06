@@ -1,27 +1,29 @@
-package pl.edmi.wdprir.ui.fractals;
-
+package pl.edmi.wdprir.fractal;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 
-public class MandelbrotSet extends FractalShape{
+public class MandelbrotSet extends FractalShape {
+
+    public final static double MANDELBROT_RE_MIN = -2;
+    public final static double MANDELBROT_RE_MAX = 1;
+    public final static double MANDELBROT_IM_MIN = -1.2;
+    public final static double MANDELBROT_IM_MAX = 1.2;
 
     public MandelbrotSet(Canvas canvas) {
         super(canvas);
     }
 
     @Override
-    public void drawFractal() {
-        drawMandelbrot(0, 1000., 0, 1000.);
-        System.out.println("namalowano!");
-
+    public void drawFractal(double reMin, double reMax, double imMin, double imMax) {
+        drawMandelbrot(reMin, reMax, imMin, imMax);
     }
 
     private void drawMandelbrot(double reMin, double reMax, double imMin, double imMax) {
         double precision = Math.max((reMax - reMin) / canvasWidth, (imMax - imMin) / canvasHeight);
-        int convergenceSteps = 50;
-        for (double c = reMin, xR = 0; xR < canvasWidth; c = c + precision, xR++) {
-            for (double ci = imMin, yR = 0; yR < canvasHeight; ci = ci + precision, yR++) {
+        int convergenceSteps = 2000;
+        for (double c = reMin, xR = 0; xR < canvasWidth; c += precision, xR++) {
+            for (double ci = imMin, yR = 0; yR < canvasHeight; ci += precision, yR++) {
                 double convergenceValue = checkConvergence(ci, c, convergenceSteps);
                 double t1 = convergenceValue / convergenceSteps;
                 double c1 = Math.min(255 * 2 * t1, 255);
@@ -35,7 +37,7 @@ public class MandelbrotSet extends FractalShape{
                 gContext.fillRect(xR, yR, 1, 1);
             }
         }
-        gContext.setFill(Color.BLACK); //revert color to base
+        gContext.setFill(Color.BLACK); // revert color to base
     }
 
     private int checkConvergence(double ci, double c, int convergenceSteps) {

@@ -42,7 +42,7 @@
                 <version>0.0.3</version>
                 <configuration>
                     <mainClass>pl.edmi.wdprir.App</mainClass>
-                    <executable>/usr/bin/java</executable>
+                    <executable>C:\jdk-15\bin\java</executable>
                 </configuration>
             </plugin>
         </plugins>

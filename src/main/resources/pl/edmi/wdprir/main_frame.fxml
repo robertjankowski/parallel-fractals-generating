@@ -14,6 +14,8 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+
 <BorderPane fx:id="borderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="pl.edmi.wdprir.ui.MainController" stylesheets="@stylesheet.css">
     <top>
@@ -24,7 +26,8 @@
         </MenuBar>
     </top>
     <center>
-        <Canvas fx:id="fractalCanvas" height="800.0" width="1200.0"/>
+        <Canvas fx:id="fractalCanvas" height="600.0" width="800.0" onMousePressed="#setStartPoint"
+                onMouseReleased="#setEndPoint"/>
     </center>
     <right>
         <GridPane alignment="TOP_CENTER" hgap="20.0" vgap="20.0">
@@ -45,6 +48,9 @@
                         </FXCollections>
                     </items>
                 </ComboBox>
+                <Label id="zoom_slider_label" text="Adjust zoom ratio"/>
+                <Slider fx:id="zoomSlider" blockIncrement="0.01" max="1.0" min="0.01" showTickLabels="true"
+                        showTickMarks="true" majorTickUnit="0.5"/>
             </VBox>
 
             <ToggleParallelSwitch fx:id="parallelSwitch" GridPane.columnIndex="0"
