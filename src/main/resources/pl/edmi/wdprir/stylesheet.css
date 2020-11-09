@@ -32,7 +32,7 @@
     -fx-padding: 10px;
 }
 
-#fractal_chooser_label, #zoom_slider_label {
+#fractal_chooser_label, #zoom_slider_label, #iteration_slider {
     -fx-padding: 10px;
     -fx-font-weight: bold;
     -fx-font-size: 15px;

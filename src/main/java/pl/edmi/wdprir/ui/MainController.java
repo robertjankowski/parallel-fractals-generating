@@ -32,6 +32,7 @@ public class MainController implements Initializable {
     public BorderPane borderPane;
 
     public Slider zoomSlider;
+    public Slider iterationSlider;
 
     private GraphicsContext gContext;
 
@@ -69,10 +70,11 @@ public class MainController implements Initializable {
         if (selectedFractal != null) {
             createFractalObject(selectedFractal, isZoom).ifPresent(f -> {
                 clearCanvas();
-                f.drawFractal(reMin, reMax, imMin, imMax);
+                f.drawFractal(reMin, reMax, imMin, imMax, (int) iterationSlider.getValue());
             });
         }
     }
+
 
     @FXML
     public void saveFractal(ActionEvent actionEvent) {
@@ -151,6 +153,11 @@ public class MainController implements Initializable {
         reMax -= zoom * xLength * (1 - xMaxRatio);
         imMin += zoom * yLength * yMinRatio;
         imMax -= zoom * yLength * (1 - yMaxRatio);
+        selectAndDrawFractal(true);
+    }
+
+    @FXML
+    public void repaintFractal() {
         selectAndDrawFractal(true);
     }
 }

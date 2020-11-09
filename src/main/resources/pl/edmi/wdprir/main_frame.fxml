@@ -26,7 +26,7 @@
         </MenuBar>
     </top>
     <center>
-        <Canvas fx:id="fractalCanvas" height="900.0" width="1100.0" onMousePressed="#setStartPoint"
+        <Canvas fx:id="fractalCanvas" height="600.0" width="800.0" onMousePressed="#setStartPoint"
                 onMouseReleased="#setEndPoint"/>
     </center>
     <right>
@@ -39,20 +39,22 @@
             <VBox id="fractal_chooser" spacing="20" alignment="CENTER" GridPane.columnIndex="0"
                   GridPane.rowIndex="1" GridPane.columnSpan="2">
                 <Label id="fractal_chooser_label" text="Choose fractal type"/>
-                <ComboBox fx:id="fractalType" promptText="Mandelbrot set">
+                <ComboBox fx:id="fractalType" value="Mandelbrot set">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Mandelbrot set"/>
                             <String fx:value="Julia set"/>
                             <String fx:value="Pythagoras Tree"/>
                             <String fx:value="Burning Ship"/>
-                            <!-- Here we can add more fractal types  -->
                         </FXCollections>
                     </items>
                 </ComboBox>
                 <Label id="zoom_slider_label" text="Adjust zoom ratio"/>
                 <Slider fx:id="zoomSlider" blockIncrement="0.01" max="1.0" min="0.01" showTickLabels="true"
                         showTickMarks="true" majorTickUnit="0.5"/>
+                <Label id="iteration_slider" text="Modify convergence steps"/>
+                <Slider fx:id="iterationSlider" max="5000" min="500" showTickMarks="true"
+                        showTickLabels="true" majorTickUnit="1000" onMouseReleased="#repaintFractal"/>
             </VBox>
 
             <ToggleParallelSwitch fx:id="parallelSwitch" GridPane.columnIndex="0"
