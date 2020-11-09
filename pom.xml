@@ -17,12 +17,12 @@
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
+            <artifactId>javafx-swing</artifactId>
             <version>15</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-swing</artifactId>
+            <artifactId>javafx-fxml</artifactId>
             <version>15</version>
         </dependency>
     </dependencies>
@@ -42,7 +42,7 @@
                 <version>0.0.3</version>
                 <configuration>
                     <mainClass>pl.edmi.wdprir.App</mainClass>
-                    <executable>C:\jdk-15\bin\java</executable>
+                    <executable>/usr/bin/java</executable>
                 </configuration>
             </plugin>
         </plugins>

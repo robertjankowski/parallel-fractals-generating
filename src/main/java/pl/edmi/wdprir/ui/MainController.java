@@ -12,8 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import pl.edmi.wdprir.fractal.FractalShape;
-import pl.edmi.wdprir.fractal.MandelbrotSet;
+import pl.edmi.wdprir.fractal.*;
 
 import java.net.URL;
 import java.util.Optional;
@@ -54,6 +53,7 @@ public class MainController implements Initializable {
         System.out.println("Selected: " + selectedFractal);
 
         selectAndDrawFractal(false);
+        System.out.println("End drawing");
 
         boolean isParallel = parallelSwitch.switchOnProperty().get();
         // TODO: implement fractal generation...
@@ -103,9 +103,29 @@ public class MainController implements Initializable {
                 return Optional.of(new MandelbrotSet(fractalCanvas));
             case "Julia set":
                 if (!isZoom) {
-                    // TODO: set re and im bounds
+                    reMin = JuliaSet.JULIA_RE_MIN;
+                    reMax = JuliaSet.JULIA_RE_MAX;
+                    imMin = JuliaSet.JULIA_IM_MIN;
+                    imMax = JuliaSet.JULIA_IM_MAX;
                 }
-                return Optional.empty();
+                return Optional.of(new JuliaSet(fractalCanvas));
+            case "Burning Ship":
+                if (!isZoom) {
+                    reMin = BurningShip.BURNING_SHIP_RE_MIN;
+                    reMax = BurningShip.BURNING_SHIP_RE_MAX;
+                    imMin = BurningShip.BURNING_SHIP_IM_MIN;
+                    imMax = BurningShip.BURNING_SHIP_IM_MAX;
+                }
+                return Optional.of(new BurningShip(fractalCanvas));
+            case "Pythagoras Tree":
+                if (!isZoom) {
+                    double a = Math.min(fractalCanvas.getHeight(), fractalCanvas.getWidth()) / 5;
+                    reMin = fractalCanvas.getWidth() / 2 - a / 2;
+                    reMax = fractalCanvas.getWidth() / 2 + a / 2;
+                    imMin = fractalCanvas.getHeight() - a / 2;
+                    imMax = imMin;
+                }
+                return Optional.of(new PythagorasTree(fractalCanvas));
             default:
                 System.err.println("Selected shape doesn't exist in the list !!!");
                 return Optional.empty();

@@ -26,7 +26,7 @@
         </MenuBar>
     </top>
     <center>
-        <Canvas fx:id="fractalCanvas" height="600.0" width="800.0" onMousePressed="#setStartPoint"
+        <Canvas fx:id="fractalCanvas" height="900.0" width="1100.0" onMousePressed="#setStartPoint"
                 onMouseReleased="#setEndPoint"/>
     </center>
     <right>
@@ -44,6 +44,8 @@
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Mandelbrot set"/>
                             <String fx:value="Julia set"/>
+                            <String fx:value="Pythagoras Tree"/>
+                            <String fx:value="Burning Ship"/>
                             <!-- Here we can add more fractal types  -->
                         </FXCollections>
                     </items>
