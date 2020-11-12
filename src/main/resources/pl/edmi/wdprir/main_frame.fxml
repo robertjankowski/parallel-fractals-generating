@@ -53,7 +53,7 @@
                 <Slider fx:id="zoomSlider" blockIncrement="0.01" max="1.0" min="0.01" showTickLabels="true"
                         showTickMarks="true" majorTickUnit="0.5"/>
                 <Label id="iteration_slider" text="Modify convergence steps"/>
-                <Slider fx:id="iterationSlider" max="5000" min="500" showTickMarks="true"
+                <Slider fx:id="iterationSlider" max="10000" min="500" showTickMarks="true"
                         showTickLabels="true" majorTickUnit="1000" onMouseReleased="#repaintFractal"/>
             </VBox>
 

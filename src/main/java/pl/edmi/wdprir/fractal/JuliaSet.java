@@ -14,17 +14,35 @@ public class JuliaSet extends FractalShape {
     }
 
     @Override
-    public void drawFractal(double reMin, double reMax, double imMin, double imMax, int convergenceSteps) {
-        ComplexNumberFractals.drawFractal(
-                canvasWidth,
-                canvasHeight,
-                gContext,
-                reMin,
-                reMax,
-                imMin,
-                imMax,
-                convergenceSteps,
-                this::checkConvergence);
+    public void drawFractal(double reMin,
+                            double reMax,
+                            double imMin,
+                            double imMax,
+                            int convergenceSteps,
+                            boolean isParallel) {
+        if (isParallel) {
+            ParallelComplexNumberFractals.drawFractal(
+                    canvasWidth,
+                    canvasHeight,
+                    gContext,
+                    reMin,
+                    reMax,
+                    imMin,
+                    imMax,
+                    convergenceSteps,
+                    this::checkConvergence);
+        } else {
+            ComplexNumberFractals.drawFractal(
+                    canvasWidth,
+                    canvasHeight,
+                    gContext,
+                    reMin,
+                    reMax,
+                    imMin,
+                    imMax,
+                    convergenceSteps,
+                    this::checkConvergence);
+        }
     }
 
     private int checkConvergence(double z, double zi, int convergenceSteps) {

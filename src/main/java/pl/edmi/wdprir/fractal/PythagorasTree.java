@@ -12,7 +12,13 @@ public class PythagorasTree extends FractalShape {
     }
 
     @Override
-    public void drawFractal(double reMin, double reMax, double imMin, double imMax, int convergenceSteps) {
+    public void drawFractal(double reMin,
+                            double reMax,
+                            double imMin,
+                            double imMax,
+                            int convergenceSteps,
+                            boolean isParallel) {
+        // TODO: Implement parallel version (?)
         drawPythagorasTree(10000, reMin, imMin, reMax, imMax);
     }
 

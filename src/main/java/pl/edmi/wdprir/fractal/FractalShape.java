@@ -21,6 +21,7 @@ public abstract class FractalShape {
                                      double reMax,
                                      double imMin,
                                      double imMax,
-                                     int convergenceSteps);
+                                     int convergenceSteps,
+                                     boolean isParallel);
 
 }
