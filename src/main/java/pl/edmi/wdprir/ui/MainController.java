@@ -7,6 +7,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -33,6 +34,7 @@ public class MainController implements Initializable {
 
     public Slider zoomSlider;
     public Slider iterationSlider;
+    public Label timerLabel;
 
     private GraphicsContext gContext;
 
@@ -49,18 +51,11 @@ public class MainController implements Initializable {
 
     @FXML
     public void generate(ActionEvent action) {
-        System.out.println("Starting to generate fractal...");
-        String selectedFractal = fractalType.getSelectionModel().getSelectedItem();
-        System.out.println("Selected: " + selectedFractal);
-
-        long start = System.currentTimeMillis();
         selectAndDrawFractal(false, isParallel());
-        long end = System.currentTimeMillis();
-        System.out.println("Elapsed: " + (end - start) + " ms");
-        System.out.println("End drawing");
     }
 
     private void selectAndDrawFractal(boolean isZoom, boolean isParallel) {
+        long start = System.currentTimeMillis();
         String selectedFractal = fractalType.getSelectionModel().getSelectedItem();
         if (selectedFractal != null) {
             createFractalObject(selectedFractal, isZoom).ifPresent(f -> {
@@ -68,6 +63,8 @@ public class MainController implements Initializable {
                 f.drawFractal(reMin, reMax, imMin, imMax, (int) iterationSlider.getValue(), isParallel);
             });
         }
+        long end = System.currentTimeMillis();
+        timerLabel.setText("Elapsed: " + (end - start) + " ms");
     }
 
     private boolean isParallel() {

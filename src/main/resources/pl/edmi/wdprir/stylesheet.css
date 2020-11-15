@@ -38,3 +38,6 @@
     -fx-font-size: 15px;
 }
 
+#timer_label {
+    -fx-font-style: italic;
+}

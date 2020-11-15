@@ -32,7 +32,7 @@
     <right>
         <GridPane alignment="TOP_CENTER" hgap="20.0" vgap="20.0">
             <padding>
-                <Insets bottom="30.0" left="10.0" right="10.0" top="30.0"/>
+                <Insets bottom="20.0" left="10.0" right="10.0" top="20.0"/>
             </padding>
             <Label id="welcome_label" text="Welcome to fractal generator!" GridPane.columnIndex="0"
                    GridPane.rowIndex="0" GridPane.columnSpan="2"/>
@@ -61,8 +61,11 @@
                                   GridPane.rowIndex="2" GridPane.columnSpan="2"/>
 
             <Button id="run_button" text="RUN" onAction="#generate" GridPane.rowIndex="3" GridPane.columnSpan="2"
-                    GridPane.rowSpan="2" GridPane.hgrow="ALWAYS" maxHeight="1.7976931348623157E308"
+                    GridPane.rowSpan="1" GridPane.hgrow="ALWAYS" maxHeight="1.7976931348623157E308"
                     maxWidth="1.7976931348623157E308" mnemonicParsing="false"/>
+
+            <Label id="timer_label" text="Elapsed" fx:id="timerLabel" GridPane.rowIndex="4" GridPane.columnSpan="1"
+                   GridPane.rowSpan="1"/>
         </GridPane>
     </right>
 </BorderPane>
