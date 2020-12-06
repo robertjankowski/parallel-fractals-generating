@@ -26,41 +26,46 @@
         </MenuBar>
     </top>
     <center>
-        <Canvas fx:id="fractalCanvas" height="900.0" width="1100.0" onMousePressed="#setStartPoint"
+        <Canvas fx:id="fractalCanvas" height="600.0" width="800.0" onMousePressed="#setStartPoint"
                 onMouseReleased="#setEndPoint"/>
     </center>
     <right>
         <GridPane alignment="TOP_CENTER" hgap="20.0" vgap="20.0">
             <padding>
-                <Insets bottom="30.0" left="10.0" right="10.0" top="30.0"/>
+                <Insets bottom="20.0" left="10.0" right="10.0" top="20.0"/>
             </padding>
             <Label id="welcome_label" text="Welcome to fractal generator!" GridPane.columnIndex="0"
                    GridPane.rowIndex="0" GridPane.columnSpan="2"/>
             <VBox id="fractal_chooser" spacing="20" alignment="CENTER" GridPane.columnIndex="0"
                   GridPane.rowIndex="1" GridPane.columnSpan="2">
                 <Label id="fractal_chooser_label" text="Choose fractal type"/>
-                <ComboBox fx:id="fractalType" promptText="Mandelbrot set">
+                <ComboBox fx:id="fractalType" value="Mandelbrot set">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Mandelbrot set"/>
                             <String fx:value="Julia set"/>
                             <String fx:value="Pythagoras Tree"/>
                             <String fx:value="Burning Ship"/>
-                            <!-- Here we can add more fractal types  -->
                         </FXCollections>
                     </items>
                 </ComboBox>
                 <Label id="zoom_slider_label" text="Adjust zoom ratio"/>
                 <Slider fx:id="zoomSlider" blockIncrement="0.01" max="1.0" min="0.01" showTickLabels="true"
                         showTickMarks="true" majorTickUnit="0.5"/>
+                <Label id="iteration_slider" text="Modify convergence steps"/>
+                <Slider fx:id="iterationSlider" max="10000" min="500" showTickMarks="true"
+                        showTickLabels="true" majorTickUnit="1000" onMouseReleased="#repaintFractal"/>
             </VBox>
 
             <ToggleParallelSwitch fx:id="parallelSwitch" GridPane.columnIndex="0"
                                   GridPane.rowIndex="2" GridPane.columnSpan="2"/>
 
             <Button id="run_button" text="RUN" onAction="#generate" GridPane.rowIndex="3" GridPane.columnSpan="2"
-                    GridPane.rowSpan="2" GridPane.hgrow="ALWAYS" maxHeight="1.7976931348623157E308"
+                    GridPane.rowSpan="1" GridPane.hgrow="ALWAYS" maxHeight="1.7976931348623157E308"
                     maxWidth="1.7976931348623157E308" mnemonicParsing="false"/>
+
+            <Label id="timer_label" text="Elapsed" fx:id="timerLabel" GridPane.rowIndex="4" GridPane.columnSpan="1"
+                   GridPane.rowSpan="1"/>
         </GridPane>
     </right>
 </BorderPane>

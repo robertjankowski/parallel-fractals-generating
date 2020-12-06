@@ -7,6 +7,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -32,6 +33,8 @@ public class MainController implements Initializable {
     public BorderPane borderPane;
 
     public Slider zoomSlider;
+    public Slider iterationSlider;
+    public Label timerLabel;
 
     private GraphicsContext gContext;
 
@@ -48,31 +51,26 @@ public class MainController implements Initializable {
 
     @FXML
     public void generate(ActionEvent action) {
-        System.out.println("Starting to generate fractal...");
-        String selectedFractal = fractalType.getSelectionModel().getSelectedItem();
-        System.out.println("Selected: " + selectedFractal);
-
-        selectAndDrawFractal(false);
-        System.out.println("End drawing");
-
-        boolean isParallel = parallelSwitch.switchOnProperty().get();
-        // TODO: implement fractal generation...
-        //        if (isParallel) {
-        //
-        //        } else {
-        //
-        //        }
+        selectAndDrawFractal(false, isParallel());
     }
 
-    private void selectAndDrawFractal(boolean isZoom) {
+    private void selectAndDrawFractal(boolean isZoom, boolean isParallel) {
+        long start = System.currentTimeMillis();
         String selectedFractal = fractalType.getSelectionModel().getSelectedItem();
         if (selectedFractal != null) {
             createFractalObject(selectedFractal, isZoom).ifPresent(f -> {
                 clearCanvas();
-                f.drawFractal(reMin, reMax, imMin, imMax);
+                f.drawFractal(reMin, reMax, imMin, imMax, (int) iterationSlider.getValue(), isParallel);
             });
         }
+        long end = System.currentTimeMillis();
+        timerLabel.setText("Elapsed: " + (end - start) + " ms");
     }
+
+    private boolean isParallel() {
+        return parallelSwitch.switchOnProperty().get();
+    }
+
 
     @FXML
     public void saveFractal(ActionEvent actionEvent) {
@@ -151,6 +149,11 @@ public class MainController implements Initializable {
         reMax -= zoom * xLength * (1 - xMaxRatio);
         imMin += zoom * yLength * yMinRatio;
         imMax -= zoom * yLength * (1 - yMaxRatio);
-        selectAndDrawFractal(true);
+        selectAndDrawFractal(true, isParallel());
+    }
+
+    @FXML
+    public void repaintFractal() {
+        selectAndDrawFractal(true, isParallel());
     }
 }
